@@ -52,6 +52,6 @@ script:
 # Retag images for other tags
 - for i in $ADD_TAG;
   do
-    ./docker-retag $DOCKER_SLUG/nextcloud-full:$TAG $i;
+    ../docker-retag $DOCKER_SLUG/nextcloud-full:$TAG $i;
   done
 
