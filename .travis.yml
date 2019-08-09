@@ -8,7 +8,6 @@ addons:
 env:
   # global:
   # - DOCKER_COMPOSE_VERSION=1.4.2
-
   matrix:
   # legacy
   - FOLDER="fpm-alpine" 
@@ -18,7 +17,7 @@ env:
     TAG="16-$FOLDER"
     ADD_TAG="latest"
 
-before_install:
+
 
 
 install:
@@ -31,7 +30,7 @@ install:
 before_script:
 # Login to hub.docker.com
 - echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
-# Pull Kaniko Image
+# Pull Kaniko image
 - docker pull gcr.io/kaniko-project/executor:latest
 # Clone official nextcloud/docker repo
 - git clone https://github.com/nextcloud/docker.git
