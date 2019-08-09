@@ -42,7 +42,7 @@ before_script:
 script:
 # Build Image via kaniko
 - docker run
-    -v "$TRAVIS_BUILD_DIR/docker/docker/.examples/dockerfiles/full/$FOLDER":/workspace
+    -v "$TRAVIS_BUILD_DIR/docker/.examples/dockerfiles/full/$FOLDER":/workspace
     -v $HOME/.docker:/kaniko/.docker
     gcr.io/kaniko-project/executor:latest
       --context=/workspace
