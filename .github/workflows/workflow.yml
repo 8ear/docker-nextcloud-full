@@ -1,0 +1,28 @@
+name: 8earDockerCI
+on:
+  push:
+    branches:
+    - master
+  schedule:
+    - cron:  '0 0 * * *'
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build container and push to registries
+      env:
+        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_USER: ${{ github.actor }}
+        REPO: ${{ github.repository }}
+        NAME: nextcloud-full
+      shell: bash
+      run: |
+        export MAKE="$PWD/make.sh"
+        git clone https://github.com/nextcloud/docker.git
+        pushd docker/.examples/dockerfiles/full/fpm
+        $MAKE
